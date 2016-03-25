@@ -376,6 +376,7 @@ function references_dialog_term_reference_add_link($element, $widget_settings, $
   if (user_access('administer taxonomy')) {
     $add_links[] = array(
       'title' => t('Create @type', array('@type' => strtoupper($field['settings']['allowed_values'][0]['vocabulary']))),
+      'title' => t('Create @type', array('@type' => taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary'])->name)),
       'href' => 'admin/structure/taxonomy/' . $field['settings']['allowed_values'][0]['vocabulary'] . '/add',
     );
   }

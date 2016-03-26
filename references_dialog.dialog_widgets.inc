@@ -286,6 +286,15 @@ function references_dialog_entityreference_link_helper($entity_type, $bundle = N
       $access = node_access('create', $bundle);
       break;
 
+    case 'taxonomy_term':
+      if (module_exists('taxonomy_access_fix')) {
+        $vocabulary = taxonomy_vocabulary_machine_name_load($bundle);
+        $access = taxonomy_access_fix_access('add terms', $vocabulary);
+      } else {
+        $access = entity_access('create', $entity_type);
+      }
+      break;
+
     default:
       $access = entity_access('create', $entity_type);
       break;

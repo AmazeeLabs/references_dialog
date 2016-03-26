@@ -128,11 +128,6 @@ function references_dialog_node_reference_edit_link($element, $widget_settings, 
  * Add link callback for node references.
  */
 function references_dialog_node_reference_add_link($element, $widget_settings, $field, $instance) {
-  // Hide add link for non-empty default value.
-  if (!empty($element['#default_value']) || !empty($element['#value'])) {
-    return array();
-  }
-
   $add_links = array();
   foreach ($field['settings']['referenceable_types'] as $type => $active) {
     if ($active !== 0) {
@@ -197,11 +192,6 @@ function references_dialog_user_reference_edit_link($element, $widget_settings, 
  * Add link callback for user references.
  */
 function references_dialog_user_reference_add_link($element, $widget_settings, $field, $instance) {
-  // Hide add link for non-empty default value.
-  if (!empty($element['#default_value']) || !empty($element['#value'])) {
-    return array();
-  }
-
   $user_links = array();
   // Check permissions for adding users.
   if (user_access('administer users')) {
@@ -243,11 +233,6 @@ function references_dialog_entityreference_edit_link($element, $widget_settings,
  * Add link callback for entity references.
  */
 function references_dialog_entityreference_add_link($element, $widget_settings, $field, $instance) {
-  // Hide add link for non-empty default value.
-  if (!empty($element['#default_value']) || !empty($element['#value'])) {
-    return array();
-  }
-
   $add_links = array();
   $entity_type = $field['settings']['target_type'];
   $entity_info = entity_get_info($entity_type);

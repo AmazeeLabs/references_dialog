@@ -207,7 +207,7 @@ function references_dialog_user_reference_add_link($element, $widget_settings, $
  * Edit link callback for entity references.
  */
 function references_dialog_entityreference_edit_link($element, $widget_settings, $field, $instance) {
-  //if (isset($element['#default_value'])) {
+  if (isset($element['#default_value'])) {
     $raw_value = $element['#default_value'] ? $element['#default_value'] : $element['#value'];
     $entity_type = $field['settings']['target_type'];
     // Take "label (entity id)', match the id from parenthesis.
@@ -225,7 +225,7 @@ function references_dialog_entityreference_edit_link($element, $widget_settings,
         );
       }
     }
- //}
+ }
   return array();
 }
 

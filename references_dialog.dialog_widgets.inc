@@ -355,7 +355,7 @@ function references_dialog_term_reference_edit_link($element, $widget_settings, 
   if (isset($element['#default_value'])) {
     // Get Term ID from entity.
     $term = taxonomy_term_load($element['#entity']->{$element['#field_name']}[$element['#language']][$element['#delta']]['tid']);
-    if ($term && user_access('administer taxonomy')) {
+    if ($term && taxonomy_term_edit_access($term)) {
       $path = taxonomy_term_uri($term);
       return array(
         array(
@@ -372,10 +372,11 @@ function references_dialog_term_reference_edit_link($element, $widget_settings, 
  * Add link callback for term references.
  */
 function references_dialog_term_reference_add_link($element, $widget_settings, $field, $instance) {
+  $vocabulary = $field['settings']['allowed_values'][0]['vocabulary'];
   $add_links = array();
-  if (user_access('administer taxonomy')) {
+  if (user_access('administer taxonomy') || (module_exists('taxonomy_access_fix') && taxonomy_access_fix_access('add terms', $vocabulary))) {
     $add_links[] = array(
-      'title' => t('Create @type', array('@type' => taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary'])->name)),
+      'title' => t('Create @type', array('@type' => taxonomy_vocabulary_machine_name_load($vocabulary)->name)),
       'href' => 'admin/structure/taxonomy/' . $field['settings']['allowed_values'][0]['vocabulary'] . '/add',
     );
   }

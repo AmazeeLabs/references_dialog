@@ -245,12 +245,13 @@ function references_dialog_entityreference_add_link($element, $widget_settings, 
     $display = $field['settings']['handler_settings']['view']['display_name'];
     $views = views_get_view($name);
     $views_display = $views->display;
+    $bundle_key = $entity_info['bundle keys']['bundle'];
 
-    if (isset($views_display[$display]->display_options['filters']['type'])) {
-      $views_filters = $views_display[$display]->display_options['filters']['type']['value'];
+    if (isset($views_display[$display]->display_options['filters'][$bundle_key])) {
+      $views_filters = $views_display[$display]->display_options['filters'][$bundle_key]['value'];
     }
-    else {
-      $views_filters = $views_display['default']->display_options['filters']['type']['value'];
+    else if (!empty($views_display['default']->display_options['filters'][$bundle_key]['value'])) {
+      $views_filters = $views_display['default']->display_options['filters'][$bundle_key]['value'];
     }
 
     $bundles = array_keys($views_filters);

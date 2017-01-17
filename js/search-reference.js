@@ -22,8 +22,8 @@
       }
       selector.each(function(index) {
         $(this).click(function(e) {
-          // Ignore if the element is a link.
-          if (e.target && e.target.nodeName && e.target.nodeName.toLowerCase() !== 'a') {
+            // Check if the target is the node.
+          if (e.target && e.target.nodeName) {
             // Fetch the entity from wherever it might be.
             var entity = settings.ReferencesDialog.entities[index];
             // Tell our parent that we are done with what we want to do here.

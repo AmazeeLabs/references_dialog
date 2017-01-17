@@ -1,0 +1,23 @@
+diff --git a/js/search-reference.js b/js/search-reference.js
+index 473fdaa..45b4f1f 100644
+--- a/js/search-reference.js
++++ b/js/search-reference.js
+@@ -22,9 +22,8 @@
+       }
+       selector.each(function(index) {
+         $(this).click(function(e) {
+-          e.preventDefault();
+-          // Ignore if the element is a link.
+-          if (e.target && e.target.nodeName && e.target.nodeName.toLowerCase() !== 'a') {
++            // Check if the target is the node.
++          if (e.target && e.target.nodeName) {
+             // Fetch the entity from wherever it might be.
+             var entity = settings.ReferencesDialog.entities[index];
+             // Tell our parent that we are done with what we want to do here.
+@@ -56,4 +55,4 @@
+       })
+     }
+   }
+-})(jQuery);
+\ No newline at end of file
++})(jQuery);
